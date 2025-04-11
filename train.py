@@ -57,7 +57,7 @@ def training(
             train_dataset,
             batch_size=1,
             shuffle=True,
-            num_workers=8,
+            num_workers=0, # was: 8
             collate_fn=lambda x: x,
             pin_memory=True,
         )
