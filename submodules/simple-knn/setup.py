@@ -27,7 +27,7 @@ setup(
             "spatial.cu", 
             "simple_knn.cu",
             "ext.cpp"],
-            extra_compile_args={"nvcc": [], "cxx": cxx_compiler_flags})
+            extra_compile_args={"nvcc": ["-allow-unsupported-compiler", "-D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH"], "cxx": cxx_compiler_flags})
         ],
     cmdclass={
         'build_ext': BuildExtension
