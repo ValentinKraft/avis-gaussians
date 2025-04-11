@@ -22,6 +22,7 @@ from gaussian_me.args import ModelParams, PipelineParams, OptimizationParams
 
 from torch.utils.tensorboard import SummaryWriter
 
+def identity_collate(x): return x
 
 def training(
     model_params: ModelParams,
@@ -57,8 +58,8 @@ def training(
             train_dataset,
             batch_size=1,
             shuffle=True,
-            num_workers=0, # was: 8
-            collate_fn=lambda x: x,
+            num_workers=4, # was: 8
+            collate_fn=identity_collate,
             pin_memory=True,
         )
     )
