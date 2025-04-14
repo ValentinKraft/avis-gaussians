@@ -58,7 +58,7 @@ def training(
             train_dataset,
             batch_size=1,
             shuffle=True,
-            num_workers=4, # was: 8
+            num_workers=8,
             collate_fn=identity_collate,
             pin_memory=True,
         )
@@ -175,6 +175,7 @@ def training(
                     "point_cloud/iteration_{}".format(iteration),
                 )
                 gaussians.save_npz(os.path.join(point_cloud_path, "point_cloud.npz"))
+                gaussians.save_ply(os.path.join(point_cloud_path, "point_cloud.ply"))
 
 
 def prepare_output_and_logger(output_folder: str, args: ModelParams) -> SummaryWriter:
