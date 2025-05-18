@@ -9,10 +9,10 @@ module AHrEZPlanner {
     moduleGroupName = ""
     windows {
       window _default {
-        geometry = "1006 132 1702 1141"
-        relativePosition = "0.0398 -0.4045"
+        geometry = "503 147 1702 1141"
+        relativePosition = "-0.1064 -0.3937"
         sizeHint = "686 433"
-        wasOpen = yes
+        wasOpen = no
       }
     }
   }
@@ -147,8 +147,8 @@ module SoPerspectiveCamera {
     moduleGroupName = ""
     windows {
       window _default {
-        geometry = "1989 200 450 258"
-        relativePosition = "0.1436 -0.3556"
+        geometry = "1977 198 450 258"
+        relativePosition = "0.1401 -0.3570"
         sizeHint = "406 258"
         wasOpen = no
       }
@@ -157,8 +157,8 @@ module SoPerspectiveCamera {
   fields {
     instanceName = SoPerspectiveCamera
     viewportMapping = ADJUST_CAMERA
-    position = "-25 19 96"
-    orientation = "0 0 1 0"
+    position = "99 74 10"
+    orientation = "0.321634590625763 0.641970038414001 0.696006953716278 2.47054648399353"
     aspectRatio = 1
     nearDistance = 0.53953755
     farDistance = 540.61768
@@ -173,8 +173,8 @@ module OffscreenRenderer {
     showNetworkPanel = true
     windows {
       window _default {
-        geometry = "1873 737 296 370"
-        relativePosition = "0.0875 0.0302"
+        geometry = "1871 737 296 370"
+        relativePosition = "0.0869 0.0302"
         sizeHint = "268 370"
         wasOpen = no
       }
@@ -186,7 +186,7 @@ module OffscreenRenderer {
     imageType = RGB
     bufferType = AUTO
     stencilBuffer = FALSE
-    size = "2048 2048"
+    size = "1024 1024"
     pixelScale = 1
     bgColor = "0 0 0"
     enableMultiSampling = FALSE
@@ -223,13 +223,13 @@ module SoCameraAlignedRotation {
 }
 module RotateAtTarget {
   internal {
-    frame = "313 693 144 56"
+    frame = "313 685 144 56"
     moduleGroupName = ""
     showNetworkPanel = true
     windows {
       window _default {
-        geometry = "914 755 370 451"
-        relativePosition = "-0.1805 0.0431"
+        geometry = "1299 780 370 451"
+        relativePosition = "-0.0686 0.0611"
         sizeHint = "339 451"
         wasOpen = no
       }
@@ -237,7 +237,7 @@ module RotateAtTarget {
   }
   fields {
     instanceName = RotateAtTarget
-    inPosition = "-25 19 96"
+    inPosition = "99 74 10"
     inTarget = "0 0 0"
     inUpVector = "0 0 1"
     onInputChangeBehavior = Clear
@@ -485,8 +485,8 @@ module SoCameraAccess {
     moduleGroupName = ""
     windows {
       window _default {
-        geometry = "977 357 1087 739"
-        relativePosition = "-0.0578 -0.2428"
+        geometry = "1585 472 1087 739"
+        relativePosition = "0.1189 -0.1602"
         sizeHint = "536 739"
         wasOpen = no
       }
@@ -494,27 +494,27 @@ module SoCameraAccess {
   }
   fields {
     instanceName = SoCameraAccess
-    transformDeltaOut = "1 6.51925802230835e-08 2.98023223876953e-08 0
--6.51925802230835e-08 1 1.49011603056692e-08 0
--2.98023223876953e-08 -1.49011629702045e-08 1 0
+    transformDeltaOut = "0.8233243227005 -0.402256548404694 0.400408208370209 0
+0.0457703620195389 0.750235259532928 0.659584820270538 0
+-0.565722644329071 -0.524725377559662 0.636098384857178 0
 0 0 0 1"
-    viewingMatrix = "1 0 0 0
-0 1 0 0
-0 0 1 0
-25 -19 -96 1"
-    projectionMatrix = "1.8652675151825 0 0 0
+    viewingMatrix = "-0.59870457649231 -0.0645922347903252 0.798361241817474 0
+0.800969839096069 -0.0482810549438 0.596754670143127 0
+-1.11758717835642e-08 0.996743083000183 0.0806424543261528 0
+-1.51544809341431e-05 -1.9073486328125e-06 -124.004043579102 1"
+    projectionMatrix = "2.41421389579773 0 0 0
 0 2.41421365737915 0 0
-0 0 -1.00199806690216 -1
+-1.33353424303095e-07 1.0001505756918e-07 -1.00199806690216 -1
 0 0 -1.08015310764313 0"
-    cameraSpaceMatrix = "1 0 0 0
-0 1 0 0
-0 0 1 0
-25 -19 -96 1"
-    camPosition = "-25 19 96"
-    lookAtPosition = "0 0 -1"
-    upVector = "0 1 0"
-    viewVector = "0 0 -1"
-    viewportSizeOut = "1680 1298"
+    cameraSpaceMatrix = "0.410183846950531 -0.440872609615326 0.79836106300354 0
+-0.440872609615326 0.670458912849426 0.596754610538483 0
+-0.79836106300354 -0.596754610538483 0.0806427597999573 0
+-1.66893005371094e-05 -2.52723693847656e-05 -124.004013061523 1"
+    camPosition = "99 74 10"
+    lookAtPosition = "-5.96046447753906e-08 -0.996743023395538 -0.0806425213813782"
+    upVector = "-0.0645922347903252 -0.0482810549438 0.996743083000183"
+    viewVector = "-0.79836118221283 -0.596754848957062 -0.08064254373312"
+    viewportSizeOut = "1024 1024"
     nearDistance = 0.53953755
     farDistance = 540.61768
     NewViewingMatrix = "1 0 0 0
@@ -534,8 +534,8 @@ module RunPythonScript {
     showNetworkPanel = true
     windows {
       window _default {
-        geometry = "1589 152 927 1156"
-        relativePosition = "0.0968 -0.3901"
+        geometry = "754 170 1211 1156"
+        relativePosition = "-0.1047 -0.3772"
         sizeHint = "628 303"
         wasOpen = yes
       }
@@ -603,11 +603,7 @@ import numpy as np
 
 from scipy.spatial.transform import Rotation as R
 
-def quaternion_from_matrix(matrix):
-    return R.from_matrix(matrix[:3, :3]).as_quat()  # x, y, z, w
-
-extent = 100
-output_path = "C:/DEV/TESTS/gs/gaussian-splatting/_scene_"
+out_path = "C:/DEV/TESTS/gs/gaussian-splatting/_scene_"
 transforms = {
     "camera_angle_x": 0.785398,
     "w": 1024,
@@ -615,98 +611,125 @@ transforms = {
     "frames": []
 }
 
-for i in range(100):
-  x = random.randint(-extent,extent)
-  y = random.randint(-extent,extent)
-  z = random.randint(-extent,extent)
-  ctx.field("RotateAtTarget.inPosition").setValue([x,y,z])
-  ctx.field("RotateAtTarget.update").touch()
-  ctx.field("OffscreenRenderer.update").touch()
-  ctx.field("ImageSave.filename").setValue(f"{output_path}/images/{i}.jpg")
-  ctx.field("ImageSave.save").touch()
+def quaternion_from_matrix(matrix):
+    return R.from_matrix(matrix[:3, :3]).as_quat()  # x, y, z, w
+    
+def generate_weighted_splats_from_image(num_points=5000, output_path="points3D.txt"):
   
-  # export camera pose data
-  view = ctx.field("SoCameraAccess.viewingMatrix").value
-  view_matrix = np.array(view).reshape((4, 4))
-  world_matrix = np.linalg.inv(view_matrix).T#.transpose()
-  #world_matrix[:3, 2] *= -1  # ← Z-Achse invertieren
+    output_path += "/sparse/0/points3D.txt"
+    image = ctx.field("Vesselness.output0").image()
+    if not image:
+        print("Kein Bild gefunden.")
+        return
+
+    # Hole gesamten Bildbereich (Tile)
+    tile = image.getTile((0, 0, 0, 0, 0, 0), image.imageExtent())
+    if tile is None:
+        print("Tile nicht gefunden.")
+        return
+
+    # In NumPy-Array umwandeln
+    arr = np.array(tile, dtype=np.float32)
+    
+    # Falls zusätzliche Dimensionen existieren, diese entfernen
+    while arr.ndim > 3:
+      arr = arr[0]
+
+    # Bildgrößen und Weltinformationen
+    dims = image.imageExtent()[1:4]  # (x,y,z)
+    spacing = image.voxelSize()
+    print(f"Spacing: {spacing}")
+    m = image.voxelToWorldMatrix()#.getTranslation()
+    origin = [m[0][3],m[1][3],m[2][3]]
+    print(f"Origin: {origin}")
+
+    # Wahrscheinlichkeitsverteilung erstellen (z. B. Werte > 0)
+    arr_flat = arr.flatten()
+    arr_flat[arr_flat < 0] = 0  # nur positive Werte erlauben
+    total = np.sum(arr_flat)
+    if total == 0:
+        print("Alle Bildwerte sind 0.")
+        return
+    probs = arr_flat / total
+
+    # Indexpositionen für Sampling
+    all_indices = np.arange(len(arr_flat))
+
+    # Ziehe Indizes gemäß Gewichtung
+    chosen_indices = np.random.choice(all_indices, size=num_points, replace=False, p=probs)
+
+    # Berechne Voxel-Koordinaten (z,y,x Reihenfolge beachten!)
+    coords = np.unravel_index(chosen_indices, arr.shape)
+    voxel_coords = np.stack(coords, axis=-1)  # (z, y, x)
+
+    # points3D.txt schreiben
+    with open(output_path, "w") as f:
+        f.write("# 3D point list with one line per point:\\n")
+        f.write("# POINT3D_ID, X, Y, Z, R, G, B, ERROR, TRACK[] as (IMAGE_ID, POINT2D_IDX)\\n")
+
+        for i, (z, y, x) in enumerate(voxel_coords, 1):
+            # Weltkoordinaten berechnen
+            wx = (origin[0] + x) /-100.0 * spacing[0]
+            wy = (origin[1] + y) /-100.0 * spacing[1]
+            wz = (origin[2] + z) /-100.0 * spacing[2]
+
+            # Farbe zufällig oder abhängig vom Bildwert
+            r = random.randint(200, 255)
+            g = random.randint(200, 255)
+            b = random.randint(200, 255)
+
+            f.write(f"{i} {wx:.6f} {wy:.6f} {wz:.6f} {r} {g} {b} 0.0 1 0 2 0\\n")
+
+    print(f"[✓] {num_points} gewichtete Punkte aus Bild gespeichert nach: {output_path}")
+
+def render_images_and_generate_cameras_txt(num_imgs=100, output_path="", extent=100):
   
+  image_width = transforms["w"]
+  image_height = transforms["h"]
+  focal_length = (image_width / 2) / np.tan(transforms["camera_angle_x"] / 2)
+  camera_id = 1
   
-  
-  print("Translation =", world_matrix[:3, 3])
-  
-  # Extrahiere die Translation (aktuell in Zeile 3)
-  #tx, ty, tz = world_matrix[3][:3]
-
-  # Verschiebe Translation in die letzte Spalte jeder Zeile
-  #for j in range(3):
-  #    world_matrix[j][3] = [tx, ty, tz][j]
-
-  # Setze die letzte Zeile auf [0, 0, 0, 1]
-  #world_matrix[3] = [0.0, 0.0, 0.0, 1.0]
-
-
-
-  transforms["frames"].append({
-        "file_path": f"{i}.jpg",  # relativer Pfad im Zielrepo
-        "transform_matrix": world_matrix.tolist()
-    })
-
-output_path += "/sparse/0"
-
-# === JSON schreiben ===
-with open(os.path.join(output_path, "transforms.json"), "w") as f:
-    json.dump(transforms, f, indent=4)
-
-# === COLMAP-export ===
-image_width = transforms["w"]
-image_height = transforms["h"]
-focal_length = (image_width / 2) / np.tan(transforms["camera_angle_x"] / 2)
-camera_id = 1
-
-with open(os.path.join(output_path, "cameras.txt"), "w") as f:
-    f.write("# Camera list with one line of data per camera:\\n")
-    f.write("#   CAMERA_ID, MODEL, WIDTH, HEIGHT, PARAMS[]\\n")
-    f.write("# Number of cameras: 1\\n")
-    f.write(f"{camera_id} PINHOLE {image_width} {image_height} {focal_length} {focal_length} {image_width/2} {image_height/2}\\n")
-
-with open(os.path.join(output_path, "images.txt"), "w") as f:
+  # render random cams and render images
+  with open(os.path.join(output_path+"/sparse/0", "images.txt"), "w") as f:
+    
     f.write("# Image list with two lines of data per image:\\n")
     f.write("#   IMAGE_ID, QW, QX, QY, QZ, TX, TY, TZ, CAMERA_ID, IMAGE_NAME\\n")
     f.write("#   POINTS2D[] as (X, Y, POINT3D_ID)\\n")
 
-    for i, frame in enumerate(transforms["frames"]):
-        matrix = np.array(frame["transform_matrix"])  # transponieren
-        R_world2cam = matrix[:3, :3].T
-        t_world2cam = -R_world2cam @ matrix[:3, 3]
+    for i in range(num_imgs):
+      x = random.randint(-extent,extent)
+      y = random.randint(-extent,extent)
+      z = random.randint(-extent,extent)
+      ctx.field("RotateAtTarget.inPosition").setValue([x,y,z])
+      ctx.field("RotateAtTarget.update").touch()
+      ctx.field("OffscreenRenderer.update").touch()
+      ctx.field("ImageSave.filename").setValue(f"{output_path}/images/{i}.jpg")
+      ctx.field("ImageSave.save").touch()
 
-        q = R.from_matrix(R_world2cam).as_quat()  # [x,y,z,w]
-        qx, qy, qz, qw = q  # umsortieren zu [qw, qx, qy, qz]
+      rot = ctx.field("RotateAtTarget.outQuaternionRotation").value
+      
+      # Original Quaternion von Kamera zu Welt
+      q_wc = [rot[3], rot[0], rot[1], rot[2]]
+      r_wc = R.from_quat([rot[0], rot[1], rot[2], rot[3]])  # [x, y, z, w]
+      r_cw = r_wc.inv()
+      
+      qx, qy, qz, qw = r_cw.as_quat()
 
-        image_name = frame["file_path"]
-        f.write(f"{i+1} {qw} {qx} {qy} {qz} {t_world2cam[0]} {t_world2cam[1]} {t_world2cam[2]} {camera_id} {image_name}\\n")
-        f.write("\\n")  # leere Zeile für 2D-Punkte
-        
+      # Kamerazentrum
+      C = np.array([x / 100.0, y / 100.0, z / 100.0])
+      t = -r_cw.as_matrix() @ C
+      
+      f.write(f"{i+1} {qw} {qx} {qy} {qz} {t[0]} {t[1]} {t[2]} {camera_id} {i}.jpg\\n")
+  
+  print(f"data exported to {output_path}")
+  
+##############################################
 
-# === NEU: Punktwolke in points3D.txt ===
-num_points = 100000
-point_extent = 50
-
-with open(os.path.join(output_path, "points3D.txt"), "w") as f:
-    f.write("# 3D point list with one line per point:\\n")
-    f.write("# POINT3D_ID, X, Y, Z, R, G, B, ERROR, TRACK[] as (IMAGE_ID, POINT2D_IDX)\\n")
-    for i in range(1, num_points + 1):
-        x = random.uniform(-point_extent, point_extent)
-        y = random.uniform(-point_extent, point_extent)
-        z = random.uniform(-point_extent, point_extent)
-        r = random.randint(100, 255)
-        g = random.randint(100, 255)
-        b = random.randint(100, 255)
-        error = 0.0
-        track = "1 0"  # Dummyeintrag: Bild 1, Keypoint 0
-        f.write(f"{i} {x} {y} {z} {r} {g} {b} {error} {track}\\n")
-
-print(f"data exported to {output_path}")*"
+generate_weighted_splats_from_image(
+    num_points=10000,
+    output_path=out_path
+)
+render_images_and_generate_cameras_txt(100,out_path)*"
     finalizeCode = ""
     showFields = FALSE
     showInitCode = FALSE
@@ -911,10 +934,10 @@ module Vesselness {
     moduleGroupName = ""
     windows {
       window _default {
-        geometry = "1213 334 214 365"
-        relativePosition = "-0.1163 -0.2593"
+        geometry = "931 318 214 365"
+        relativePosition = "-0.1983 -0.2708"
         sizeHint = "214 365"
-        wasOpen = yes
+        wasOpen = no
       }
     }
   }
@@ -930,23 +953,6 @@ module Vesselness {
     autoUpdate = TRUE
   }
 }
-module PythonImageExample {
-  internal {
-    frame = "325 821 152 56"
-    moduleGroupName = ""
-    windows {
-      window _default {
-        geometry = "1664 717 198 66"
-        relativePosition = "0.0125 0.0158"
-        sizeHint = "111 66"
-        wasOpen = no
-      }
-    }
-  }
-  fields {
-    instanceName = PythonImageExample
-  }
-}
 module RunPythonScript {
   internal {
     frame = "1113 857 160 64"
@@ -954,10 +960,10 @@ module RunPythonScript {
     showNetworkPanel = true
     windows {
       window _default {
-        geometry = "825 252 1022 981"
-        relativePosition = "-0.1116 -0.3182"
+        geometry = "398 185 1022 1143"
+        relativePosition = "-0.2358 -0.3664"
         sizeHint = "628 303"
-        wasOpen = yes
+        wasOpen = no
       }
     }
   }
@@ -1041,9 +1047,10 @@ def generate_weighted_splats_from_image(num_points=5000, output_path="points3D.t
     # Bildgrößen und Weltinformationen
     dims = image.imageExtent()[1:4]  # (x,y,z)
     spacing = image.voxelSize()
+    print(f"Spacing: {spacing}")
     m = image.voxelToWorldMatrix()#.getTranslation()
     origin = [m[0][3],m[1][3],m[2][3]]
-    print(origin)
+    print(f"Origin: {origin}")
 
     # Wahrscheinlichkeitsverteilung erstellen (z. B. Werte > 0)
     arr_flat = arr.flatten()
@@ -1071,9 +1078,9 @@ def generate_weighted_splats_from_image(num_points=5000, output_path="points3D.t
 
         for i, (z, y, x) in enumerate(voxel_coords, 1):
             # Weltkoordinaten berechnen
-            wx = origin[0] + x /1000.0 * -1.0 #* spacing[0]
-            wy = origin[1] + y /1000.0 #* spacing[1]
-            wz = origin[2] + z /1000.0 #* spacing[2]
+            wx = (origin[0] + x) /-1000.0 * spacing[0]
+            wy = (origin[1] + y) /-1000.0 * spacing[1]
+            wz = (origin[2] + z) /-1000.0 * spacing[2]
 
             # Farbe zufällig oder abhängig vom Bildwert
             r = random.randint(0, 255)

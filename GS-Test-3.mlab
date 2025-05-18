@@ -9,8 +9,8 @@ module AHrEZPlanner {
     moduleGroupName = ""
     windows {
       window _default {
-        geometry = "1013 136 1702 1141"
-        relativePosition = "0.0419 -0.4016"
+        geometry = "1012 135 1702 1141"
+        relativePosition = "0.0416 -0.4023"
         sizeHint = "686 433"
         wasOpen = no
       }
@@ -147,8 +147,8 @@ module SoPerspectiveCamera {
     moduleGroupName = ""
     windows {
       window _default {
-        geometry = "1991 200 450 258"
-        relativePosition = "0.1442 -0.3556"
+        geometry = "1990 200 450 258"
+        relativePosition = "0.1439 -0.3556"
         sizeHint = "406 258"
         wasOpen = yes
       }
@@ -158,7 +158,7 @@ module SoPerspectiveCamera {
     instanceName = SoPerspectiveCamera
     viewportMapping = ADJUST_CAMERA
     position = "-1 -7 -2"
-    orientation = "0.996053397655487 -0.0707873404026031 -0.0535426810383797 1.85024225711823"
+    orientation = "0 0 1 0"
     aspectRatio = 1
     nearDistance = 0.23989341
     farDistance = 240.37366
@@ -311,8 +311,8 @@ module SoAxis {
     moduleGroupName = ""
     windows {
       window _default {
-        geometry = "1089 290 436 310"
-        relativePosition = "-0.1201 -0.2909"
+        geometry = "1087 290 436 310"
+        relativePosition = "-0.1206 -0.2909"
         sizeHint = "436 310"
         wasOpen = yes
       }
@@ -381,8 +381,8 @@ module ImageLoad {
     showNetworkPanel = true
     windows {
       window _default {
-        geometry = "235 253 473 366"
-        relativePosition = "-0.2542 -0.2795"
+        geometry = "608 305 473 366"
+        relativePosition = "-0.2544 -0.2802"
         sizeHint = "473 366"
         wasOpen = no
       }
@@ -415,8 +415,8 @@ module SoTransform {
     moduleGroupName = ""
     windows {
       window _default {
-        geometry = "1444 1093 440 173"
-        relativePosition = "-0.0163 0.2859"
+        geometry = "1442 1092 440 173"
+        relativePosition = "-0.0169 0.2852"
         sizeHint = "440 173"
         wasOpen = yes
       }
@@ -534,8 +534,8 @@ module RunPythonScript {
     showNetworkPanel = true
     windows {
       window _default {
-        geometry = "428 208 927 1104"
-        relativePosition = "-0.2407 -0.3499"
+        geometry = "427 207 927 1104"
+        relativePosition = "-0.2410 -0.3506"
         sizeHint = "628 303"
         wasOpen = yes
       }
@@ -628,7 +628,7 @@ for i in range(100):
   # export camera pose data
   view = ctx.field("SoCameraAccess.viewingMatrix").value
   view_matrix = np.array(view).reshape((4, 4), order='F')
-  world_matrix = np.linalg.inv(view_matrix).transpose()
+  world_matrix = np.linalg.inv(view_matrix)
   #world_matrix[:3, 2] *= -1  # ← Z-Achse invertieren
   
   
@@ -680,11 +680,12 @@ with open(os.path.join(output_path, "images.txt"), "w") as f:
         R_cam2world = matrix[:3, :3]
         t_cam2world = matrix[:3, 3]
 
+        # COLMAP erwartet: Welt → Kamera
         R_world2cam = R_cam2world.T
         t_world2cam = -R_world2cam @ t_cam2world
 
         q = R.from_matrix(R_world2cam).as_quat()  # [x,y,z,w]
-        qx, qy, qz, qw = q  # umsortieren zu [qw, qx, qy, qz]
+        qx, qy, qz, qw = q  # Umordnen: [qw, qx, qy, qz]
 
         image_name = frame["file_path"]
         f.write(f"{i+1} {qw} {qx} {qy} {qz} {t_world2cam[0]} {t_world2cam[1]} {t_world2cam[2]} {camera_id} {image_name}\\n")
