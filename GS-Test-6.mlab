@@ -9,8 +9,8 @@ module AHrEZPlanner {
     moduleGroupName = ""
     windows {
       window _default {
-        geometry = "503 147 1702 1141"
-        relativePosition = "-0.1064 -0.3937"
+        geometry = "697 144 1702 1141"
+        relativePosition = "-0.0500 -0.3958"
         sizeHint = "686 433"
         wasOpen = no
       }
@@ -157,8 +157,8 @@ module SoPerspectiveCamera {
   fields {
     instanceName = SoPerspectiveCamera
     viewportMapping = ADJUST_CAMERA
-    position = "99 74 10"
-    orientation = "0.321634590625763 0.641970038414001 0.696006953716278 2.47054648399353"
+    position = "705 -733 -772"
+    orientation = "0.912004828453064 0.367405027151108 0.182374939322472 2.29138731956482"
     aspectRatio = 1
     nearDistance = 0.53953755
     farDistance = 540.61768
@@ -228,16 +228,16 @@ module RotateAtTarget {
     showNetworkPanel = true
     windows {
       window _default {
-        geometry = "1299 780 370 451"
-        relativePosition = "-0.0686 0.0611"
+        geometry = "1447 805 370 451"
+        relativePosition = "-0.0256 0.0790"
         sizeHint = "339 451"
-        wasOpen = no
+        wasOpen = yes
       }
     }
   }
   fields {
     instanceName = RotateAtTarget
-    inPosition = "99 74 10"
+    inPosition = "705 -733 -772"
     inTarget = "0 0 0"
     inUpVector = "0 0 1"
     onInputChangeBehavior = Clear
@@ -494,26 +494,26 @@ module SoCameraAccess {
   }
   fields {
     instanceName = SoCameraAccess
-    transformDeltaOut = "0.8233243227005 -0.402256548404694 0.400408208370209 0
-0.0457703620195389 0.750235259532928 0.659584820270538 0
--0.565722644329071 -0.524725377559662 0.636098384857178 0
+    transformDeltaOut = "-0.848220825195313 -0.365544259548187 0.383272141218185 0
+-0.320232808589935 0.930349409580231 0.178608119487762 0
+-0.421866208314896 0.0287628918886185 -0.906201004981995 0
 0 0 0 1"
-    viewingMatrix = "-0.59870457649231 -0.0645922347903252 0.798361241817474 0
-0.800969839096069 -0.0482810549438 0.596754670143127 0
--1.11758717835642e-08 0.996743083000183 0.0806424543261528 0
--1.51544809341431e-05 -1.9073486328125e-06 -124.004043579102 1"
-    projectionMatrix = "2.41421389579773 0 0 0
-0 2.41421365737915 0 0
--1.33353424303095e-07 1.0001505756918e-07 -1.00199806690216 -1
+    viewingMatrix = "0.720738530158997 0.419128030538559 0.552148103713989 0
+0.693206965923309 -0.435774385929108 -0.574077486991882 0
+4.4703483581543e-08 0.796512603759766 -0.604621887207031 0
+6.50286674499512e-05 -0.00018310546875 -1276.83129882813 1"
+    projectionMatrix = "2.41421365737915 0 0 0
+0 2.41421389579773 0 0
+-1.0001505756918e-07 3.33383560757738e-08 -1.00199806690216 -1
 0 0 -1.08015310764313 0"
-    cameraSpaceMatrix = "0.410183846950531 -0.440872609615326 0.79836106300354 0
--0.440872609615326 0.670458912849426 0.596754610538483 0
--0.79836106300354 -0.596754610538483 0.0806427597999573 0
--1.66893005371094e-05 -2.52723693847656e-05 -124.004013061523 1"
-    camPosition = "99 74 10"
-    lookAtPosition = "-5.96046447753906e-08 -0.996743023395538 -0.0806425213813782"
-    upVector = "-0.0645922347903252 -0.0482810549438 0.996743083000183"
-    viewVector = "-0.79836118221283 -0.596754848957062 -0.08064254373312"
+    cameraSpaceMatrix = "0.228921413421631 0.801702797412872 0.552148103713989 0
+0.801702797412872 0.166456639766693 -0.574077308177948 0
+-0.552148103713989 0.574077308177948 -0.604621887207031 0
+0.000213623046875 -9.1552734375e-05 -1276.83117675781 1"
+    camPosition = "705 -733 -772"
+    lookAtPosition = "-5.96046447753906e-08 -0.7965127825737 0.60462212562561"
+    upVector = "0.419128030538559 -0.435774385929108 0.796512603759766"
+    viewVector = "-0.552127838134766 0.5741006731987 0.604618430137634"
     viewportSizeOut = "1024 1024"
     nearDistance = 0.53953755
     farDistance = 540.61768
@@ -534,8 +534,8 @@ module RunPythonScript {
     showNetworkPanel = true
     windows {
       window _default {
-        geometry = "754 170 1211 1156"
-        relativePosition = "-0.1047 -0.3772"
+        geometry = "537 156 870 1158"
+        relativePosition = "-0.2174 -0.3872"
         sizeHint = "628 303"
         wasOpen = yes
       }
@@ -669,9 +669,12 @@ def generate_weighted_splats_from_image(num_points=5000, output_path="points3D.t
 
         for i, (z, y, x) in enumerate(voxel_coords, 1):
             # Weltkoordinaten berechnen
-            wx = (origin[0] + x) /-100.0 * spacing[0]
-            wy = (origin[1] + y) /-100.0 * spacing[1]
-            wz = (origin[2] + z) /-100.0 * spacing[2]
+            wx = (origin[0] + x * spacing[0]) / 1.0
+            wy = (origin[1] + y * spacing[1]) / 1.0
+            wz = (origin[2] + z * spacing[2]) / 1.0
+            #wx = (origin[0] + x ) / 1000.0
+            #wy = (origin[1] + y ) / 1000.0
+            #wz = (origin[2] + z ) / 1000.0
 
             # Farbe zufällig oder abhängig vom Bildwert
             r = random.randint(200, 255)
@@ -716,7 +719,7 @@ def render_images_and_generate_cameras_txt(num_imgs=100, output_path="", extent=
       qx, qy, qz, qw = r_cw.as_quat()
 
       # Kamerazentrum
-      C = np.array([x / 100.0, y / 100.0, z / 100.0])
+      C = np.array([x, y, z])
       t = -r_cw.as_matrix() @ C
       
       f.write(f"{i+1} {qw} {qx} {qy} {qz} {t[0]} {t[1]} {t[2]} {camera_id} {i}.jpg\\n")
@@ -729,7 +732,7 @@ generate_weighted_splats_from_image(
     num_points=10000,
     output_path=out_path
 )
-render_images_and_generate_cameras_txt(100,out_path)*"
+render_images_and_generate_cameras_txt(100,out_path,1000)*"
     finalizeCode = ""
     showFields = FALSE
     showInitCode = FALSE
