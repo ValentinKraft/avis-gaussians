@@ -9,8 +9,8 @@ module AHrEZPlanner {
     moduleGroupName = ""
     windows {
       window _default {
-        geometry = "34 117 1702 985"
-        relativePosition = "-0.0391 -0.3976"
+        geometry = "33 116 1702 985"
+        relativePosition = "-0.0396 -0.3984"
         sizeHint = "686 433"
         wasOpen = no
       }
@@ -157,8 +157,8 @@ module SoPerspectiveCamera {
   fields {
     instanceName = SoPerspectiveCamera
     viewportMapping = ADJUST_CAMERA
-    position = "70 51 93"
-    orientation = "0.183127984404564 0.359999090433121 0.914803028106689 2.27049946784973"
+    position = "94.7508010864258 9.59370708465576 30.499942779541"
+    orientation = "0.470234394073486 0.520250737667084 0.71289473772049 1.99679577350616"
     aspectRatio = 1
     nearDistance = 0.53953755
     farDistance = 540.61768
@@ -237,7 +237,7 @@ module RotateAtTarget {
   }
   fields {
     instanceName = RotateAtTarget
-    inPosition = "70 51 93"
+    inPosition = "94.7508008028636 9.59370663557678 30.4999432820221"
     inTarget = "0 0 0"
     inUpVector = "0 0 1"
     onInputChangeBehavior = Clear
@@ -494,26 +494,26 @@ module SoCameraAccess {
   }
   fields {
     instanceName = SoCameraAccess
-    transformDeltaOut = "0.722945272922516 -0.324687063694 0.609859466552734 0
-0.505609512329102 0.850194811820984 -0.146723628044128 0
--0.470860123634338 0.414423823356628 0.778809189796448 0
+    transformDeltaOut = "-0.19737446308136 -0.496503800153732 -0.84529721736908 0
+-0.298999339342117 0.851663827896118 -0.4304279088974 0
+0.933618068695068 0.167787864804268 -0.316550970077515 0
 0 0 0 1"
-    viewingMatrix = "-0.588858067989349 -0.59147310256958 0.55082243680954 0
-0.808236479759216 -0.430930614471436 0.401313722133636 0
-2.98023223876953e-08 0.68151181936264 0.731807231903076 0
-1.04308128356934e-06 -2.288818359375e-05 -127.082641601563 1"
-    projectionMatrix = "2.41421294212341 0 0 0
-0 2.41421294212341 0 0
--3.33383418649191e-08 6.66766837298383e-08 -1.00199806690216 -1
+    viewingMatrix = "-0.100737012922764 -0.303447932004929 0.947507858276367 0
+0.994913101196289 -0.030724860727787 0.0959371030330658 0
+2.9057261485832e-07 0.952352523803711 0.304999560117722 0
+-1.23679637908936e-06 1.9073486328125e-06 -99.9999923706055 1"
+    projectionMatrix = "2.41421318054199 0 0 0
+0 2.41421365737915 0 0
+0 1.66691762615301e-07 -1.00199806690216 -1
 0 0 -1.08015310764313 0"
-    cameraSpaceMatrix = "0.82480400800705 -0.127642780542374 0.550822675228119 0
--0.127642780542374 0.907003104686737 0.401313662528992 0
--0.550822675228119 -0.401313662528992 0.731807112693787 0
-7.62939453125e-06 3.814697265625e-06 -127.082641601563 1"
-    camPosition = "70 51 93"
-    lookAtPosition = "0 -0.681511759757996 -0.731807172298431"
-    upVector = "-0.59147310256958 -0.430930614471436 0.68151181936264"
-    viewVector = "-0.550821721553802 -0.401315450668335 -0.731806933879852"
+    cameraSpaceMatrix = "0.312052309513092 -0.069656066596508 0.947507977485657 0
+-0.069656066596508 0.992947161197662 0.0959370583295822 0
+-0.947507977485657 -0.0959370583295822 0.304999470710754 0
+-5.7220458984375e-06 -1.19209289550781e-06 -100 1"
+    camPosition = "94.7508010864258 9.59370708465576 30.499942779541"
+    lookAtPosition = "-1.49011611938477e-07 -0.95235276222229 -0.304999113082886"
+    upVector = "-0.303447932004929 -0.030724860727787 0.952352523803711"
+    viewVector = "-0.947507977485657 -0.0959365889430046 -0.304999709129333"
     viewportSizeOut = "1024 1024"
     nearDistance = 0.53953755
     farDistance = 540.61768
@@ -700,9 +700,18 @@ def render_images_and_generate_cameras_txt(num_imgs=100, output_path="", extent=
     f.write("#   POINTS2D[] as (X, Y, POINT3D_ID)\\n")
 
     for i in range(num_imgs):
-      x = random.randint(-extent,extent)
-      y = random.randint(-extent,extent)
-      z = random.randint(-extent,extent)
+      #x = random.randint(-extent,extent)
+      #y = random.randint(-extent,extent)
+      #z = random.randint(-extent,extent)
+      
+      radius = extent
+      theta = random.uniform(0, 2 * np.pi)       # Azimut
+      phi = random.uniform(0.3 * np.pi, 0.7 * np.pi)  # Polarwinkel, um nicht nur oben/unten zu landen
+
+      x = radius * np.sin(phi) * np.cos(theta)
+      y = radius * np.sin(phi) * np.sin(theta)
+      z = radius * np.cos(phi)
+      
       ctx.field("RotateAtTarget.inPosition").setValue([x,y,z])
       ctx.field("RotateAtTarget.update").touch()
       ctx.field("OffscreenRenderer.update").touch()
