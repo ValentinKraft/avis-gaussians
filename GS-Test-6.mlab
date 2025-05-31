@@ -9,8 +9,8 @@ module AHrEZPlanner {
     moduleGroupName = ""
     windows {
       window _default {
-        geometry = "33 116 1702 985"
-        relativePosition = "-0.0396 -0.3984"
+        geometry = "105 104 1702 985"
+        relativePosition = "-0.0021 -0.4089"
         sizeHint = "686 433"
         wasOpen = no
       }
@@ -22,7 +22,7 @@ module AHrEZPlanner {
 }
 module RunPythonScript {
   internal {
-    frame = "1109 601 232 64"
+    frame = "1365 585 232 64"
     moduleGroupName = ""
     showNetworkPanel = true
     windows {
@@ -157,8 +157,8 @@ module SoPerspectiveCamera {
   fields {
     instanceName = SoPerspectiveCamera
     viewportMapping = ADJUST_CAMERA
-    position = "94.7508010864258 9.59370708465576 30.499942779541"
-    orientation = "0.470234394073486 0.520250737667084 0.71289473772049 1.99679577350616"
+    position = "20.7237205505371 -73.1193695068359 24.9817047119141"
+    orientation = "0.973046660423279 0.135228723287582 0.186797946691513 1.27927839756012"
     aspectRatio = 1
     nearDistance = 0.53953755
     farDistance = 540.61768
@@ -237,7 +237,7 @@ module RotateAtTarget {
   }
   fields {
     instanceName = RotateAtTarget
-    inPosition = "94.7508008028636 9.59370663557678 30.4999432820221"
+    inPosition = "20.7237198166026 -73.1193673443027 24.9817044280786"
     inTarget = "0 0 0"
     inUpVector = "0 0 1"
     onInputChangeBehavior = Clear
@@ -494,26 +494,26 @@ module SoCameraAccess {
   }
   fields {
     instanceName = SoCameraAccess
-    transformDeltaOut = "-0.19737446308136 -0.496503800153732 -0.84529721736908 0
--0.298999339342117 0.851663827896118 -0.4304279088974 0
-0.933618068695068 0.167787864804268 -0.316550970077515 0
+    transformDeltaOut = "0.898068308830261 -0.165705054998398 0.40744960308075 0
+0.137354403734207 0.985651433467865 0.098107323050499 0
+-0.417860150337219 -0.0321420766413212 0.907942593097687 0
 0 0 0 1"
-    viewingMatrix = "-0.100737012922764 -0.303447932004929 0.947507858276367 0
-0.994913101196289 -0.030724860727787 0.0959371030330658 0
-2.9057261485832e-07 0.952352523803711 0.304999560117722 0
--1.23679637908936e-06 1.9073486328125e-06 -99.9999923706055 1"
-    projectionMatrix = "2.41421318054199 0 0 0
+    viewingMatrix = "0.962104082107544 -0.0851508975028992 0.259046465158463 0
+0.272682517766953 0.300437390804291 -0.913992047309875 0
+2.98023188349816e-08 0.949992954730988 0.312271267175674 0
+-2.65240669250488e-06 -7.62939453125e-06 -80 1"
+    projectionMatrix = "2.41421365737915 0 0 0
 0 2.41421365737915 0 0
-0 1.66691762615301e-07 -1.00199806690216 -1
+-6.66767050461203e-08 -3.33383525230602e-08 -1.00199806690216 -1
 0 0 -1.08015310764313 0"
-    cameraSpaceMatrix = "0.312052309513092 -0.069656066596508 0.947507977485657 0
--0.069656066596508 0.992947161197662 0.0959370583295822 0
--0.947507977485657 -0.0959370583295822 0.304999470710754 0
--5.7220458984375e-06 -1.19209289550781e-06 -100 1"
-    camPosition = "94.7508010864258 9.59370708465576 30.499942779541"
-    lookAtPosition = "-1.49011611938477e-07 -0.95235276222229 -0.304999113082886"
-    upVector = "-0.303447932004929 -0.030724860727787 0.952352523803711"
-    viewVector = "-0.947507977485657 -0.0959365889430046 -0.304999709129333"
+    cameraSpaceMatrix = "0.948863387107849 0.180424913764 0.259046465158463 0
+0.180424913764 0.363407850265503 -0.91399210691452 0
+-0.259046465158463 0.91399210691452 0.312271237373352 0
+-1.9073486328125e-06 -1.9073486328125e-06 -80.0000076293945 1"
+    camPosition = "20.7237205505371 -73.1193695068359 24.9817047119141"
+    lookAtPosition = "-1.49011611938477e-08 -0.949992895126343 -0.312271356582642"
+    upVector = "-0.0851508975028992 0.300437390804291 0.949992954730988"
+    viewVector = "-0.259046167135239 0.913992404937744 -0.312270641326904"
     viewportSizeOut = "1024 1024"
     nearDistance = 0.53953755
     farDistance = 540.61768
@@ -529,13 +529,13 @@ module SoCameraAccess {
 }
 module RunPythonScript {
   internal {
-    frame = "1113 685 160 56"
+    frame = "1369 665 160 64"
     moduleGroupName = ""
     showNetworkPanel = true
     windows {
       window _default {
-        geometry = "52 91 994 993"
-        relativePosition = "-0.2141 -0.4201"
+        geometry = "13 127 947 944"
+        relativePosition = "-0.2464 -0.3889"
         sizeHint = "628 303"
         wasOpen = yes
       }
@@ -672,9 +672,9 @@ def generate_weighted_splats_from_image(num_points=5000, output_path="points3D.t
             wx = (origin[0] + x * spacing[0]) / 1000.0
             wy = (origin[1] + y * spacing[1]) / -1000.0
             wz = (origin[2] + z * spacing[2]) / -1000.0
-            #wx = random.uniform(-5,5)
-            #wy = random.uniform(-5,5)
-            #wz = random.uniform(-5,5)
+            #wx = random.uniform(-0.2,0.2)
+            #wy = random.uniform(-0.2,0.2)
+            #wz = random.uniform(-0.2,0.2)
 
             # Farbe zufällig oder abhängig vom Bildwert
             r = random.randint(200, 255)
@@ -742,7 +742,7 @@ generate_weighted_splats_from_image(
     num_points=100000,
     output_path=out_path
 )
-render_images_and_generate_cameras_txt(100,out_path,100)*"
+render_images_and_generate_cameras_txt(100,out_path,80)*"
     finalizeCode = ""
     showFields = FALSE
     showInitCode = FALSE
@@ -754,7 +754,7 @@ render_images_and_generate_cameras_txt(100,out_path,100)*"
 }
 module RunPythonScript {
   internal {
-    frame = "1121 781 160 56"
+    frame = "1365 761 184 64"
     moduleGroupName = ""
     showNetworkPanel = true
     windows {
@@ -870,12 +870,12 @@ generate_random_colmap_points3d(
 }
 module SubImage {
   internal {
-    frame = "853 789 88 56"
+    frame = "869 793 88 64"
     moduleGroupName = ""
     windows {
       window _default {
-        geometry = "1347 456 397 540"
-        relativePosition = "-0.0506 -0.1717"
+        geometry = "457 359 397 540"
+        relativePosition = "-0.1583 -0.1875"
         sizeHint = "397 540"
         wasOpen = no
       }
@@ -912,13 +912,13 @@ module SubImage {
 }
 module FastMorphology {
   internal {
-    frame = "861 685 152 72"
+    frame = "1053 477 168 72"
     moduleGroupName = ""
     showNetworkPanel = true
     windows {
       window _default {
-        geometry = "1547 553 344 395"
-        relativePosition = "-0.0003 -0.1020"
+        geometry = "784 457 344 395"
+        relativePosition = "-0.0021 -0.1024"
         sizeHint = "344 395"
         wasOpen = no
       }
@@ -943,12 +943,12 @@ module FastMorphology {
 }
 module Vesselness {
   internal {
-    frame = "873 597 96 56"
+    frame = "1025 397 96 56"
     moduleGroupName = ""
     windows {
       window _default {
-        geometry = "931 318 214 365"
-        relativePosition = "-0.1983 -0.2708"
+        geometry = "942 313 214 365"
+        relativePosition = "0.0464 -0.2274"
         sizeHint = "214 365"
         wasOpen = no
       }
@@ -956,8 +956,8 @@ module Vesselness {
   }
   fields {
     instanceName = Vesselness
-    startSigma = 0.5
-    endSigma = 3
+    startSigma = 1
+    endSigma = 5
     nbrOfScales = 3
     unit = voxel
     calc2D = FALSE
@@ -968,7 +968,7 @@ module Vesselness {
 }
 module RunPythonScript {
   internal {
-    frame = "1113 857 160 64"
+    frame = "1369 841 160 64"
     moduleGroupName = ""
     showNetworkPanel = true
     windows {
@@ -1179,6 +1179,163 @@ module SubImage {
     autoApply = TRUE
   }
 }
+module SubImage {
+  internal {
+    frame = "969 797 96 56"
+    moduleGroupName = ""
+    windows {
+      window _default {
+        geometry = "1316 447 380 540"
+        relativePosition = "0.2844 -0.1111"
+        sizeHint = "397 540"
+        wasOpen = no
+      }
+    }
+  }
+  fields {
+    instanceName = SubImage1
+    boxInput = "0 0 0 0 0 0 -1 -1 -1 -1 -1 -1"
+    autoApplyBox = FALSE
+    correctForNegativeSubImageExtents = FALSE
+    enableBoxClamping = FALSE
+    x = 0
+    sx = 32
+    modifyX = FALSE
+    y = 0
+    sy = 32
+    modifyY = FALSE
+    z = 0
+    sz = 32
+    modifyZ = FALSE
+    c = 9
+    sc = 1
+    modifyC = TRUE
+    t = 0
+    st = 1
+    modifyT = FALSE
+    u = 0
+    su = 1
+    modifyU = FALSE
+    fillValue = 0
+    mode = VoxelStartSize
+    autoApply = TRUE
+  }
+}
+module SubImage {
+  internal {
+    frame = "1073 797 96 56"
+    moduleGroupName = ""
+    windows {
+      window _default {
+        geometry = "1315 447 380 540"
+        relativePosition = "0.2839 -0.1111"
+        sizeHint = "397 540"
+        wasOpen = no
+      }
+    }
+  }
+  fields {
+    instanceName = SubImage2
+    boxInput = "0 0 0 0 0 0 -1 -1 -1 -1 -1 -1"
+    autoApplyBox = FALSE
+    correctForNegativeSubImageExtents = FALSE
+    enableBoxClamping = FALSE
+    x = 0
+    sx = 32
+    modifyX = FALSE
+    y = 0
+    sy = 32
+    modifyY = FALSE
+    z = 0
+    sz = 32
+    modifyZ = FALSE
+    c = 10
+    sc = 1
+    modifyC = TRUE
+    t = 0
+    st = 1
+    modifyT = FALSE
+    u = 0
+    su = 1
+    modifyU = FALSE
+    fillValue = 0
+    mode = VoxelStartSize
+    autoApply = TRUE
+  }
+}
+module Threshold {
+  internal {
+    frame = "1133 597 88 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows {
+      window _default {
+        geometry = "832 482 282 297"
+        relativePosition = "0.0068 -0.0807"
+        sizeHint = "251 297"
+        wasOpen = no
+      }
+    }
+  }
+  fields {
+    instanceName = Threshold
+    threshold = 0
+    relativeThreshold = FALSE
+    comparisonOperator = Greater
+    conditionTrueWriteValue = UserDef
+    userConditionTrueValue = 1
+    conditionFalseWriteValue = UserDef
+    userConditionFalseValue = 0
+  }
+}
+module Arithmetic {
+  internal {
+    frame = "981 709 104 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows {
+      window _default {
+        geometry = "670 369 574 521"
+        relativePosition = "-0.0016 -0.1788"
+        sizeHint = "574 521"
+        wasOpen = no
+      }
+    }
+  }
+  fields {
+    instanceName = Arithmetic
+    expression = a+b+c
+    i1 = 0
+    i2 = 0
+    i3 = 0
+    i4 = 0
+    i5 = 0
+    i6 = 0
+    d1 = 0
+    d2 = 0
+    d3 = 0
+    d4 = 0
+    d5 = 0
+    d6 = 0
+    d7 = 0
+    d8 = 0
+    d9 = 0
+    d10 = 0
+    d11 = 0
+    d12 = 0
+    minValue = 0
+    maxValue = 1
+    setMinMaxValues = FALSE
+    dataType = int8
+    setDataType = FALSE
+    updateMode = AutoUpdate
+    applyMode = AutoApply
+    domainErrorHandling = ErrorMessage
+    numberOfInputs = 3
+    expressionComment = ""
+    scalarVariablesComment = ""
+  }
+}
 connections {
   SoPerspectiveCamera.position = RotateAtTarget.inPosition
   SoPerspectiveCamera.orientation = RotateAtTarget.outAxisAngleRotation
@@ -1188,10 +1345,16 @@ connections {
   SoAxis.inputImage = SubImage.output0
   ImageSave.input0 = OffscreenRenderer.output0
   HA.input0 = AHrEZPlanner.outSegmentationMasks
-  FastMorphology.input0 = HA.output0
+  FastMorphology.input0 = Threshold.output0
   Vesselness.input0 = SubImage.output0
   Vesselness.input1 = FastMorphology.output0
   Info.input0 = SubImage.output0
   SubImage.input0 = ImageLoad.output0
+  SubImage1.input0 = AHrEZPlanner.outSegmentationMasks
+  SubImage2.input0 = AHrEZPlanner.outSegmentationMasks
+  Threshold.input0 = Arithmetic.output0
+  Arithmetic.input0 = HA.output0
+  Arithmetic.input1 = SubImage1.output0
+  Arithmetic.input2 = SubImage2.output0
 }
 networkModel = ""
