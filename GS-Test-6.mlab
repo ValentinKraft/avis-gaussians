@@ -9,8 +9,8 @@ module AHrEZPlanner {
     moduleGroupName = ""
     windows {
       window _default {
-        geometry = "38 118 1702 985"
-        relativePosition = "-0.0370 -0.3967"
+        geometry = "34 117 1702 985"
+        relativePosition = "-0.0391 -0.3976"
         sizeHint = "686 433"
         wasOpen = no
       }
@@ -157,8 +157,8 @@ module SoPerspectiveCamera {
   fields {
     instanceName = SoPerspectiveCamera
     viewportMapping = ADJUST_CAMERA
-    position = "49 87 97"
-    orientation = "0.101578794419765 0.387346655130386 0.916321098804474 2.66993832588196"
+    position = "70 51 93"
+    orientation = "0.183127984404564 0.359999090433121 0.914803028106689 2.27049946784973"
     aspectRatio = 1
     nearDistance = 0.53953755
     farDistance = 540.61768
@@ -237,7 +237,7 @@ module RotateAtTarget {
   }
   fields {
     instanceName = RotateAtTarget
-    inPosition = "49 87 97"
+    inPosition = "70 51 93"
     inTarget = "0 0 0"
     inUpVector = "0 0 1"
     onInputChangeBehavior = Clear
@@ -494,26 +494,26 @@ module SoCameraAccess {
   }
   fields {
     instanceName = SoCameraAccess
-    transformDeltaOut = "0.363602101802826 0.23270845413208 0.902020037174225 0
-0.649103879928589 0.631238102912903 -0.424502700567245 0
--0.668174803256989 0.73985481262207 0.0784675478935242 0
+    transformDeltaOut = "0.722945272922516 -0.324687063694 0.609859466552734 0
+0.505609512329102 0.850194811820984 -0.146723628044128 0
+-0.470860123634338 0.414423823356628 0.778809189796448 0
 0 0 0 1"
-    viewingMatrix = "-0.871307969093323 -0.341943621635437 0.351990073919296 0
-0.490736722946167 -0.607124447822571 0.624961972236633 0
-1.49011611938477e-08 0.717268764972687 0.696796655654907 0
--5.26010990142822e-06 -7.62939453125e-06 -139.208480834961 1"
-    projectionMatrix = "2.41421318054199 0 0 0
+    viewingMatrix = "-0.588858067989349 -0.59147310256958 0.55082243680954 0
+0.808236479759216 -0.430930614471436 0.401313722133636 0
+2.98023223876953e-08 0.68151181936264 0.731807231903076 0
+1.04308128356934e-06 -2.288818359375e-05 -127.082641601563 1"
+    projectionMatrix = "2.41421294212341 0 0 0
 0 2.41421294212341 0 0
-0 1.00015029147471e-07 -1.00199806690216 -1
+-3.33383418649191e-08 6.66766837298383e-08 -1.00199806690216 -1
 0 0 -1.08015310764313 0"
-    cameraSpaceMatrix = "0.926981747150421 -0.129644587635994 0.351990193128586 0
--0.129644587635994 0.769814729690552 0.624962031841278 0
--0.351990193128586 -0.624962031841278 0.696796536445618 0
-2.288818359375e-05 1.9073486328125e-05 -139.208480834961 1"
-    camPosition = "49 87 97"
-    lookAtPosition = "1.49011611938477e-08 -0.717268824577332 -0.696796536445618"
-    upVector = "-0.341943621635437 -0.607124447822571 0.717268764972687"
-    viewVector = "-0.351988941431046 -0.624960422515869 -0.69679868221283"
+    cameraSpaceMatrix = "0.82480400800705 -0.127642780542374 0.550822675228119 0
+-0.127642780542374 0.907003104686737 0.401313662528992 0
+-0.550822675228119 -0.401313662528992 0.731807112693787 0
+7.62939453125e-06 3.814697265625e-06 -127.082641601563 1"
+    camPosition = "70 51 93"
+    lookAtPosition = "0 -0.681511759757996 -0.731807172298431"
+    upVector = "-0.59147310256958 -0.430930614471436 0.68151181936264"
+    viewVector = "-0.550821721553802 -0.401315450668335 -0.731806933879852"
     viewportSizeOut = "1024 1024"
     nearDistance = 0.53953755
     farDistance = 540.61768
@@ -534,8 +534,8 @@ module RunPythonScript {
     showNetworkPanel = true
     windows {
       window _default {
-        geometry = "53 91 994 993"
-        relativePosition = "-0.2135 -0.4201"
+        geometry = "52 91 994 993"
+        relativePosition = "-0.2141 -0.4201"
         sizeHint = "628 303"
         wasOpen = yes
       }
@@ -669,7 +669,7 @@ def generate_weighted_splats_from_image(num_points=5000, output_path="points3D.t
 
         for i, (z, y, x) in enumerate(voxel_coords, 1):
             # Weltkoordinaten berechnen
-            wx = (origin[0] + x * spacing[0]) / -1000.0
+            wx = (origin[0] + x * spacing[0]) / 1000.0
             wy = (origin[1] + y * spacing[1]) / -1000.0
             wz = (origin[2] + z * spacing[2]) / -1000.0
             #wx = random.uniform(-5,5)
@@ -713,14 +713,14 @@ def render_images_and_generate_cameras_txt(num_imgs=100, output_path="", extent=
       
       # Original Quaternion von Kamera zu Welt
       #q_wc = [rot[3], rot[0], rot[1], rot[2]]
-      r_wc = R.from_quat([rot[0], rot[1], rot[2], rot[3]])  # [x, y, z, w]
+      r_wc = R.from_quat([rot[0], -rot[1], -rot[2], rot[3]])  # [x, y, z, w]
       
       r_cw = r_wc.inv()
       
       qx, qy, qz, qw = r_cw.as_quat()
 
       # Kamerazentrum
-      C = np.array([-x, -y, -z])
+      C = np.array([x, -y, -z])
       t = -r_cw.as_matrix() @ C
       
       f.write(f"{i+1} {qw} {qx} {qy} {qz} {t[0]/100.0} {t[1]/100.0} {t[2]/100.0} {camera_id} {i}.jpg\\n")
