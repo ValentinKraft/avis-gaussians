@@ -83,7 +83,33 @@ def generate_pca_covariances(voxel_coords, arr, spacing, neighborhood_size=3):
         scalings.append(scaling)
 
     return covariances, rotations, scalings
+
+
+
+def generate_random_splats(num_points=5000, output_path="points3D.txt"):
     
+    output_path += "/sparse/0/points3D.txt"
+
+    # points3D.txt schreiben
+    with open(output_path, "w") as f:
+        f.write("# 3D point list with one line per point:\n")
+        f.write("# POINT3D_ID, X, Y, Z, R, G, B, ERROR, TRACK[] as (IMAGE_ID, POINT2D_IDX)\n")
+
+        for i in range(num_points):
+            wx = random.uniform(-0.2,0.2)
+            wy = random.uniform(-0.2,0.2)
+            wz = random.uniform(-0.2,0.2)
+
+            r = random.randint(100, 255)
+            g = random.randint(100, 255)
+            b = random.randint(100, 255)
+
+            f.write(f"{i} {wx:.6f} {wy:.6f} {wz:.6f} {r} {g} {b} 0.0 1 1 2 1\n")
+
+    print(f"[✓] {num_points} Punkte aus Bild gespeichert nach: {output_path}")
+
+
+
 def generate_weighted_splats_from_image(num_points=5000, output_path="points3D.txt"):
   
     output_path += "/sparse/0/points3D.txt"
@@ -125,7 +151,7 @@ def generate_weighted_splats_from_image(num_points=5000, output_path="points3D.t
     coords = np.unravel_index(chosen_indices, arr.shape)
     voxel_coords = np.stack(coords, axis=-1)  # (z, y, x)
     
-    #covs, rots, scales = generate_pca_covariances(voxel_coords, arr, spacing)
+    covs, rots, scales = generate_pca_covariances(voxel_coords, arr, spacing)
 
     # points3D.txt schreiben
     with open(output_path, "w") as f:
@@ -137,14 +163,7 @@ def generate_weighted_splats_from_image(num_points=5000, output_path="points3D.t
             wx = (origin[0] + x * spacing[0] ) / 100.0
             wy = (origin[1] + y * spacing[1] ) / -100.0
             wz = (origin[2] + z * spacing[2] ) / -100.0
-            #wx = random.uniform(-0.2,0.2)
-            #wy = random.uniform(-0.2,0.2)
-            #wz = random.uniform(-0.2,0.2)
 
-            # Farbe zufällig oder abhängig vom Bildwert
-            #r = random.randint(100, 255)
-            #g = random.randint(100, 255)
-            #b = random.randint(100, 255)
             r = dicom_tile[0,0,0,z,y,x]
             g = dicom_tile[0,0,0,z,y,x]
             b = dicom_tile[0,0,0,z,y,x]
@@ -152,6 +171,8 @@ def generate_weighted_splats_from_image(num_points=5000, output_path="points3D.t
             f.write(f"{i} {wx:.6f} {wy:.6f} {wz:.6f} {r} {g} {b} 0.0 1 1 2 1\n")
 
     print(f"[✓] {num_points} gewichtete Punkte aus Bild gespeichert nach: {output_path}")
+
+
 
 def render_images_and_generate_cameras_txt(num_imgs=100, output_path="", extent=100):
   
@@ -168,9 +189,6 @@ def render_images_and_generate_cameras_txt(num_imgs=100, output_path="", extent=
     f.write("#   POINTS2D[] as (X, Y, POINT3D_ID)\n")
 
     for i in range(num_imgs):
-      #x = random.randint(-extent,extent)
-      #y = random.randint(-extent,extent)
-      #z = random.randint(-extent,extent)
       
       radius = extent
       theta = random.uniform(0, 2 * np.pi)       # Azimut
