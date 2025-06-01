@@ -4,7 +4,7 @@ import random
 import os
 import json
 import numpy as np
-
+from sklearn.decomposition import PCA
 from scipy.spatial.transform import Rotation as R
 
 out_path = "C:/DEV/TESTS/gs/gaussian-splatting/_scene_"
@@ -17,6 +17,7 @@ transforms = {
 
 def quaternion_from_matrix(matrix):
     return R.from_matrix(matrix[:3, :3]).as_quat()  # x, y, z, w
+    
     
 def access_image(node):
     image = ctx.field(node).image()
@@ -31,6 +32,7 @@ def access_image(node):
         return
 
     return image, tile
+    
     
 def generate_pca_covariances(voxel_coords, arr, spacing, neighborhood_size=3):
     covariances = []
@@ -85,7 +87,6 @@ def generate_pca_covariances(voxel_coords, arr, spacing, neighborhood_size=3):
     return covariances, rotations, scalings
 
 
-
 def generate_random_splats(num_points=5000, output_path="points3D.txt"):
     
     output_path += "/sparse/0/points3D.txt"
@@ -107,7 +108,6 @@ def generate_random_splats(num_points=5000, output_path="points3D.txt"):
             f.write(f"{i} {wx:.6f} {wy:.6f} {wz:.6f} {r} {g} {b} 0.0 1 1 2 1\n")
 
     print(f"[✓] {num_points} Punkte aus Bild gespeichert nach: {output_path}")
-
 
 
 def generate_weighted_splats_from_image(num_points=5000, output_path="points3D.txt"):
@@ -151,7 +151,7 @@ def generate_weighted_splats_from_image(num_points=5000, output_path="points3D.t
     coords = np.unravel_index(chosen_indices, arr.shape)
     voxel_coords = np.stack(coords, axis=-1)  # (z, y, x)
     
-    covs, rots, scales = generate_pca_covariances(voxel_coords, arr, spacing)
+    #covs, rots, scales = generate_pca_covariances(voxel_coords, arr, spacing)
 
     # points3D.txt schreiben
     with open(output_path, "w") as f:
@@ -171,6 +171,79 @@ def generate_weighted_splats_from_image(num_points=5000, output_path="points3D.t
             f.write(f"{i} {wx:.6f} {wy:.6f} {wz:.6f} {r} {g} {b} 0.0 1 1 2 1\n")
 
     print(f"[✓] {num_points} gewichtete Punkte aus Bild gespeichert nach: {output_path}")
+
+
+def generate_weighted_splats_from_image_with_pca(num_points=5000, output_dir="output"):
+    output_path = os.path.join(output_dir, "sparse/0")
+    os.makedirs(output_path, exist_ok=True)
+
+    image, tile = access_image("Vesselness.output0")
+    dicom_img, dicom_tile = access_image("SubImage.output0")
+
+    arr = np.array(tile, dtype=np.float32)
+    while arr.ndim > 3:
+        arr = arr[0]
+
+    dims = image.imageExtent()[1:4]  # (x,y,z)
+    spacing = image.voxelSize()
+    m = image.voxelToWorldMatrix()
+    origin = [m[0][3], m[1][3], m[2][3]]
+
+    arr_flat = arr.flatten()
+    arr_flat[arr_flat < 0] = 0
+    total = np.sum(arr_flat)
+    if total == 0:
+        print("Alle Bildwerte sind 0.")
+        return
+    probs = arr_flat / total
+
+    all_indices = np.arange(len(arr_flat))
+    chosen_indices = np.random.choice(all_indices, size=num_points, replace=False, p=probs)
+    coords = np.unravel_index(chosen_indices, arr.shape)
+    voxel_coords = np.stack(coords, axis=-1)
+
+    scalings = []
+    rotations = []
+
+    with open(os.path.join(output_path, "points3D.txt"), "w") as f:
+        f.write("# 3D point list with one line per point:\n")
+        f.write("# POINT3D_ID, X, Y, Z, R, G, B, ERROR, TRACK[] as (IMAGE_ID, POINT2D_IDX)\n")
+
+        for i, (z, y, x) in enumerate(voxel_coords, 1):
+            wx = (origin[0] + x * spacing[0]) / 100.0
+            wy = (origin[1] + y * spacing[1]) / -100.0
+            wz = (origin[2] + z * spacing[2]) / -100.0
+
+            r = dicom_tile[0, 0, 0, z, y, x]
+            g = r
+            b = r
+            f.write(f"{i} {wx:.6f} {wy:.6f} {wz:.6f} {r} {g} {b} 0.0 1 1 2 1\n")
+
+            # PCA für lokale Nachbarschaft
+            window = 3
+            zmin, zmax = max(0, z - window), min(arr.shape[0], z + window + 1)
+            ymin, ymax = max(0, y - window), min(arr.shape[1], y + window + 1)
+            xmin, xmax = max(0, x - window), min(arr.shape[2], x + window + 1)
+
+            subvolume = arr[zmin:zmax, ymin:ymax, xmin:xmax]
+            sub_coords = np.argwhere(subvolume > 0)
+            if len(sub_coords) < 3:
+                sub_coords = np.array([[0, 0, 0]])
+
+            pca = PCA(n_components=3)
+            pca.fit(sub_coords)
+
+            scaling = pca.singular_values_ * np.mean(spacing) / 100.0
+            rotation = pca.components_  # shape (3,3)
+
+            scalings.append(scaling.tolist())
+            rotations.append(rotation.tolist())
+
+    # Speichern der zusätzlichen Splat-Informationen
+    np.save(os.path.join(output_path, "scalings.npy"), np.array(scalings))
+    np.save(os.path.join(output_path, "rotations.npy"), np.array(rotations))
+
+    print(f"[✓] {num_points} gewichtete Punkte mit PCA gespeichert nach: {output_path}")
 
 
 
@@ -225,8 +298,7 @@ def render_images_and_generate_cameras_txt(num_imgs=100, output_path="", extent=
 ##############################################
 
 def update():
-    generate_weighted_splats_from_image(
-        num_points=100000,
-        output_path=out_path
-    )
+    
+    #generate_weighted_splats_from_image(num_points=100000,output_path=out_path)
+    generate_weighted_splats_from_image_with_pca(num_points=100000, output_dir=out_path)
     render_images_and_generate_cameras_txt(100,out_path,70)
